@@ -1,0 +1,1631 @@
+<!-- ============================================================
+  GT Lighting 首页 · WordPress / Elementor 直用版
+  用法：Elementor 画布(空白)模板 → 拖入一个 HTML 小工具 → 全选粘贴本文件全部内容
+============================================================ -->
+<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');</style>
+<style>
+/* ============================================================
+   GT LIGHTING — Homepage (Optimized)
+   Brand: blue #204391 / orange #E75116
+   ============================================================ */
+:root{
+  --blue:#204391;
+  --blue-deep:#16305f;
+  --navy:#0d1b33;
+  --navy-2:#12244a;
+  --orange:#e75116;
+  --orange-dark:#c6420d;
+  --text:#172033;
+  --muted:#667085;
+  --muted-light:#a5b0c4;
+  --line:#e3e8f1;
+  --line-dark:rgba(255,255,255,.12);
+  --bg-soft:#f4f6fa;
+  --white:#ffffff;
+  --shadow-sm:0 2px 10px rgba(13,27,51,.06);
+  --shadow-md:0 16px 40px rgba(13,27,51,.10);
+  --shadow-lg:0 28px 64px rgba(13,27,51,.16);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --font:"Inter","Helvetica Neue",Arial,sans-serif;
+}
+#gt-home, #gt-home *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  color:var(--text);
+  background:var(--white);
+  font-size:15.5px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+#gt-home img{display:block;max-width:100%}
+#gt-home a{text-decoration:none;color:inherit}
+#gt-home ul{list-style:none}
+#gt-home button{font:inherit;cursor:pointer;border:0;background:none}
+#gt-home ::selection{background:var(--orange);color:#fff}
+
+#gt-home .container{width:min(1360px,calc(100% - 48px));margin-inline:auto}
+
+/* ---------- shared typographic system ---------- */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:11px;
+  color:var(--orange);font-size:11px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;line-height:1;
+}
+#gt-home .eyebrow::before{content:"";width:26px;height:1px;background:currentColor;flex-shrink:0}
+.sec-title{
+  margin-top:16px;color:var(--blue);
+  font-size:clamp(32px,3.3vw,50px);font-weight:500;
+  line-height:1.08;letter-spacing:-.04em;
+}
+#gt-home .sec-title>span, #gt-home .sec-title>strong{display:block}
+#gt-home .sec-title>strong{margin-top:8px;color:var(--orange);font-weight:750}
+#gt-home .sec-divider{width:46px;height:2px;margin:26px 0;background:var(--orange)}
+#gt-home .sec-desc{max-width:620px;color:var(--muted);font-size:15px;line-height:1.78}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:11px;
+  min-height:52px;padding:0 30px;
+  font-size:13px;font-weight:750;letter-spacing:.06em;text-transform:uppercase;
+  transition:background .22s ease,color .22s ease,transform .22s ease,border-color .22s ease;
+  white-space:nowrap;
+}
+#gt-home .btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;transition:transform .22s ease}
+#gt-home .btn:hover svg{transform:translateX(4px)}
+#gt-home .btn--orange{background:var(--orange);color:#fff}
+#gt-home .btn--orange:hover{background:var(--orange-dark);transform:translateY(-2px)}
+#gt-home .btn--blue{background:var(--blue);color:#fff}
+#gt-home .btn--blue:hover{background:var(--blue-deep);transform:translateY(-2px)}
+#gt-home .btn--ghost{border:1px solid rgba(255,255,255,.45);color:#fff}
+#gt-home .btn--ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+#gt-home .btn--white{background:#fff;color:var(--blue)}
+#gt-home .btn--white:hover{background:var(--bg-soft);transform:translateY(-2px)}
+
+.link-more{
+  display:inline-flex;align-items:center;gap:10px;padding-bottom:8px;
+  border-bottom:1px solid var(--blue);
+  color:var(--blue);font-size:14px;font-weight:700;line-height:1.2;
+  transition:color .2s ease,border-color .2s ease;
+}
+#gt-home .link-more svg{width:17px;height:17px;fill:none;stroke:var(--orange);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease}
+#gt-home .link-more:hover{color:var(--orange);border-color:var(--orange)}
+#gt-home .link-more:hover svg{transform:translateX(4px)}
+
+/* ---------- reveal animation ---------- */
+#gt-home .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+#gt-home .reveal.in{opacity:1;transform:none}
+#gt-home .reveal[data-delay="1"]{transition-delay:.1s}
+#gt-home .reveal[data-delay="2"]{transition-delay:.2s}
+#gt-home .reveal[data-delay="3"]{transition-delay:.3s}
+#gt-home .reveal[data-delay="4"]{transition-delay:.4s}
+#gt-home .reveal[data-delay="5"]{transition-delay:.5s}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+.topbar{
+  background:var(--navy);color:#cdd6e6;
+  font-size:12.5px;position:relative;z-index:60;
+}
+#gt-home .topbar__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:40px}
+#gt-home .topbar__slogan{display:flex;align-items:center;gap:9px;letter-spacing:.02em}
+#gt-home .topbar__slogan svg{width:14px;height:14px;fill:none;stroke:var(--orange);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+#gt-home .topbar__contacts{display:flex;align-items:center;gap:22px}
+#gt-home .topbar__contacts a{display:inline-flex;align-items:center;gap:7px;color:#cdd6e6;transition:color .2s}
+#gt-home .topbar__contacts a:hover{color:#fff}
+#gt-home .topbar__contacts svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#gt-home .topbar__social{display:flex;gap:6px;margin-left:6px;padding-left:18px;border-left:1px solid var(--line-dark)}
+#gt-home .topbar__social a{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;color:#cdd6e6}
+#gt-home .topbar__social a:hover{background:rgba(255,255,255,.1);color:#fff}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:box-shadow .3s ease,border-color .3s ease;
+}
+#gt-home .header.is-scrolled{border-color:var(--line);box-shadow:0 8px 30px rgba(13,27,51,.07)}
+#gt-home .header__inner{display:flex;align-items:center;justify-content:space-between;gap:32px;min-height:78px;transition:min-height .3s ease}
+#gt-home .header.is-scrolled .header__inner{min-height:66px}
+#gt-home .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+#gt-home .brand img{height:44px;width:auto}
+#gt-home .brand__name{line-height:1.15}
+#gt-home .brand__name strong{display:block;color:var(--blue);font-size:17px;font-weight:800;letter-spacing:-.01em}
+#gt-home .brand__name small{display:block;color:var(--muted);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+#gt-home .nav{display:flex;align-items:center;gap:34px}
+.nav a{
+  position:relative;color:var(--text);font-size:14.5px;font-weight:600;
+  padding:8px 0;transition:color .2s;
+}
+.nav a::after{
+  content:"";position:absolute;left:0;bottom:2px;width:0;height:2px;
+  background:var(--orange);transition:width .28s var(--ease);
+}
+#gt-home .nav a:hover, #gt-home .nav a.is-active{color:var(--blue)}
+#gt-home .nav a:hover::after, #gt-home .nav a.is-active::after{width:100%}
+#gt-home .header__cta{display:flex;align-items:center;gap:14px}
+#gt-home .header__quote{min-height:44px;padding:0 22px;font-size:12px}
+#gt-home .burger{display:none;width:44px;height:44px;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+#gt-home .burger span{width:22px;height:2px;background:var(--blue);transition:transform .3s ease,opacity .3s ease}
+#gt-home .burger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#gt-home .burger.is-open span:nth-child(2){opacity:0}
+#gt-home .burger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile nav */
+.mnav{
+  position:fixed;inset:0;z-index:49;background:var(--navy);
+  display:flex;flex-direction:column;justify-content:center;padding:100px 32px 48px;
+  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease;
+}
+#gt-home .mnav.is-open{opacity:1;visibility:visible}
+.mnav a{
+  color:#fff;font-size:clamp(26px,6vw,34px);font-weight:700;letter-spacing:-.02em;
+  padding:12px 0;border-bottom:1px solid var(--line-dark);
+  display:flex;align-items:center;justify-content:space-between;
+}
+#gt-home .mnav a small{color:var(--orange);font-size:12px;font-weight:800;letter-spacing:.16em}
+#gt-home .mnav__cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#gt-home .hero{position:relative;min-height:calc(100vh - 118px);min-height:calc(100svh - 118px);display:flex;flex-direction:column;background:var(--navy);overflow:hidden}
+#gt-home .hero__slides, #gt-home .hero__slide{position:absolute;inset:0}
+#gt-home .hero__slide{opacity:0;visibility:hidden;transition:opacity 1.1s ease,visibility 1.1s ease}
+#gt-home .hero__slide.is-active{opacity:1;visibility:visible}
+#gt-home .hero__slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 6.5s linear}
+#gt-home .hero__slide.is-active img{transform:scale(1)}
+.hero__overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(90deg,rgba(9,20,42,.92) 0%,rgba(9,20,42,.72) 38%,rgba(9,20,42,.30) 68%,rgba(9,20,42,.18) 100%),
+    linear-gradient(0deg,rgba(9,20,42,.88) 0%,rgba(9,20,42,0) 42%);
+}
+.hero__body{
+  position:relative;z-index:2;flex:1;display:flex;align-items:center;
+  padding:84px 0 60px;
+}
+#gt-home .hero__content{max-width:780px;color:#fff}
+.hero__tag{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;
+  padding:9px 16px;border:1px solid rgba(255,255,255,.28);
+  font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#e8edf6;
+}
+#gt-home .hero__tag i{width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(231,81,22,.55)}55%{box-shadow:0 0 0 8px rgba(231,81,22,0)}}
+.hero h1{
+  color:#fff;font-size:clamp(40px,5.2vw,78px);font-weight:600;
+  line-height:1.05;letter-spacing:-.045em;
+}
+#gt-home .hero h1 strong{display:block;margin-top:10px;color:var(--orange);font-weight:800}
+.hero__sub{
+  margin-top:26px;max-width:600px;
+  color:#c7d2e6;font-size:clamp(15px,1.25vw,17.5px);line-height:1.75;
+}
+#gt-home .hero__cta{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap}
+.hero__chips{
+  margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18);
+  display:flex;gap:26px 34px;flex-wrap:wrap;
+}
+#gt-home .hero__chip{display:flex;align-items:center;gap:10px;color:#dbe3f0;font-size:13px;font-weight:600}
+#gt-home .hero__chip svg{width:19px;height:19px;fill:none;stroke:var(--orange);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* hero controls */
+#gt-home .hero__nav{position:absolute;z-index:3;right:max(24px,calc((100% - 1360px)/2));bottom:170px;display:flex;gap:10px}
+.hero__arrow{
+  width:48px;height:48px;display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.35);color:#fff;
+  transition:background .25s,border-color .25s;
+}
+#gt-home .hero__arrow:hover{background:var(--orange);border-color:var(--orange)}
+#gt-home .hero__arrow svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* hero bottom stats */
+#gt-home .hero__stats{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.16);background:rgba(9,20,42,.44);backdrop-filter:blur(8px)}
+#gt-home .hero__stats .container{display:grid;grid-template-columns:repeat(5,1fr)}
+#gt-home .hstat{padding:24px 20px 24px 0;border-right:1px solid rgba(255,255,255,.12);display:flex;flex-direction:column;gap:3px}
+#gt-home .hstat:last-child{border-right:0}
+#gt-home .hstat + .hstat{padding-left:26px}
+#gt-home .hstat b{color:#fff;font-size:clamp(24px,2.1vw,34px);font-weight:700;letter-spacing:-.03em;line-height:1.1}
+#gt-home .hstat b em{color:var(--orange);font-style:normal}
+#gt-home .hstat span{color:#9fb0cc;font-size:12px;font-weight:600;letter-spacing:.04em}
+#gt-home .hero__dots{position:absolute;z-index:3;left:max(24px,calc((100% - 1360px)/2));bottom:172px;display:flex;gap:8px}
+#gt-home .hero__dot{width:26px;height:3px;background:rgba(255,255,255,.3);transition:background .3s,width .3s;position:relative;overflow:hidden}
+#gt-home .hero__dot.is-active{width:52px;background:rgba(255,255,255,.35)}
+#gt-home .hero__dot.is-active i{position:absolute;inset:0;background:var(--orange);transform-origin:left;animation:heroDot 5.6s linear forwards}
+@keyframes heroDot{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+#gt-home .section{padding:clamp(72px,7vw,110px) 0}
+#gt-home .section--soft{background:var(--bg-soft)}
+#gt-home .section--dark{background:var(--navy);color:#e6ecf6}
+#gt-home .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-bottom:clamp(40px,4vw,58px)}
+#gt-home .sec-head--center{flex-direction:column;align-items:center;text-align:center}
+#gt-home .sec-head--center .sec-desc{margin-inline:auto}
+#gt-home .sec-head--center .eyebrow::after{content:"";width:26px;height:1px;background:currentColor}
+
+#gt-home .footer__brand .logo-light{display:inline-block;background:#fff;padding:10px 16px;margin-bottom:18px}
+#gt-home .footer__brand .logo-light img{height:40px;width:auto}
+</style>
+<style>
+/* ============================================================
+   ABOUT / FACTORY STRENGTH
+   ============================================================ */
+#gt-home .about__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(48px,5vw,84px);align-items:stretch}
+#gt-home .about__points{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:14px 22px}
+#gt-home .apoint{display:flex;gap:13px;align-items:flex-start;padding:16px 18px;background:var(--bg-soft);border-left:2px solid var(--blue);transition:border-color .25s,transform .25s}
+#gt-home .apoint:hover{border-left-color:var(--orange);transform:translateY(-3px)}
+#gt-home .apoint svg{width:21px;height:21px;flex-shrink:0;fill:none;stroke:var(--blue);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+#gt-home .apoint b{display:block;color:var(--blue);font-size:14px;font-weight:750;line-height:1.35}
+#gt-home .apoint span{display:block;color:var(--muted);font-size:12.5px;line-height:1.55;margin-top:3px}
+#gt-home .about__cta{margin-top:34px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+
+#gt-home .about__media{position:relative;min-width:0}
+#gt-home .about__slider{position:relative;height:100%;min-height:460px;overflow:hidden;background:var(--bg-soft);box-shadow:var(--shadow-md)}
+#gt-home .about__slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s ease}
+#gt-home .about__slide.is-active{opacity:1;visibility:visible}
+#gt-home .about__slide img{width:100%;height:100%;object-fit:cover}
+.about__slide::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,27,51,0) 46%,rgba(13,27,51,.72) 100%);
+}
+#gt-home .about__caption{position:absolute;z-index:2;left:30px;right:30px;bottom:26px;display:flex;align-items:flex-end;justify-content:space-between;gap:22px;color:#fff}
+#gt-home .about__caption b{font-size:16.5px;font-weight:700;line-height:1.4;max-width:320px}
+#gt-home .about__caption small{display:block;color:var(--orange);font-size:11px;font-weight:800;letter-spacing:.16em;margin-bottom:6px}
+#gt-home .about__dots{position:absolute;z-index:3;left:30px;bottom:-30px;display:flex;gap:7px}
+#gt-home .about__dot{width:8px;height:8px;border-radius:99px;background:#c9d2e2;transition:width .25s,background .25s}
+#gt-home .about__dot.is-active{width:26px;background:var(--orange)}
+.about__badge{
+  position:absolute;z-index:4;top:-24px;right:-24px;
+  width:132px;height:132px;border-radius:50%;
+  background:var(--blue);color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  box-shadow:var(--shadow-lg);text-align:center;
+}
+#gt-home .about__badge b{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1}
+#gt-home .about__badge b em{color:var(--orange);font-style:normal}
+#gt-home .about__badge span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#b9c6de;line-height:1.4;padding:0 14px}
+
+/* ============================================================
+   PRODUCTS
+   ============================================================ */
+#gt-home .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:52px clamp(24px,2.6vw,38px)}
+#gt-home .pcard{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);transition:box-shadow .3s ease,transform .3s ease,border-color .3s ease}
+#gt-home .pcard:hover{box-shadow:var(--shadow-md);transform:translateY(-6px);border-color:#d3dbe8}
+#gt-home .pcard__img{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--bg-soft)}
+#gt-home .pcard__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+#gt-home .pcard:hover .pcard__img img{transform:scale(1.06)}
+.pcard__img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,27,51,.04) 30%,rgba(13,27,51,.5) 100%);
+  transition:background .3s;
+}
+.pcard__num{
+  position:absolute;z-index:2;top:18px;left:20px;
+  color:#fff;font-size:11px;font-weight:800;letter-spacing:.16em;
+  padding:6px 10px;background:rgba(13,27,51,.42);backdrop-filter:blur(4px);
+}
+.pcard__arrow{
+  position:absolute;z-index:2;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(255,255,255,.96);color:var(--blue);
+  box-shadow:0 7px 20px rgba(13,27,51,.16);
+  transition:background .25s,color .25s,transform .25s;
+}
+#gt-home .pcard__arrow svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#gt-home .pcard:hover .pcard__arrow{background:var(--orange);color:#fff;transform:translate(3px,-3px)}
+#gt-home .pcard__body{flex:1;display:flex;flex-direction:column;padding:24px 24px 26px}
+#gt-home .pcard__cat{color:var(--orange);font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:9px}
+#gt-home .pcard__body h3{color:var(--blue);font-size:21px;font-weight:750;letter-spacing:-.02em;line-height:1.25;margin-bottom:10px;transition:color .2s}
+#gt-home .pcard:hover .pcard__body h3{color:var(--orange)}
+#gt-home .pcard__body p{flex:1;color:var(--muted);font-size:13.5px;line-height:1.66}
+#gt-home .pcard__specs{margin-top:16px;padding-top:15px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
+#gt-home .pcard__specs span{font-size:11px;font-weight:700;color:var(--blue);background:var(--bg-soft);padding:5px 10px;letter-spacing:.03em}
+
+/* ============================================================
+   OEM / ODM PROCESS (dark)
+   ============================================================ */
+#gt-home .process{position:relative;overflow:hidden}
+.process::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(720px 340px at 88% -10%,rgba(231,81,22,.16),transparent 62%),
+    radial-gradient(900px 500px at -12% 112%,rgba(32,67,145,.4),transparent 60%);
+  pointer-events:none;
+}
+#gt-home .section--dark .sec-title{color:#fff}
+#gt-home .section--dark .sec-desc{color:var(--muted-light)}
+#gt-home .process__steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-dark);border:1px solid var(--line-dark)}
+#gt-home .pstep{position:relative;padding:36px 32px 34px;background:var(--navy);transition:background .3s ease}
+#gt-home .pstep:hover{background:var(--navy-2)}
+.pstep__num{
+  font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--orange);
+  display:flex;align-items:center;gap:12px;margin-bottom:20px;
+}
+#gt-home .pstep__num::after{content:"";flex:1;height:1px;background:var(--line-dark)}
+#gt-home .pstep__icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);margin-bottom:20px;transition:background .3s}
+#gt-home .pstep:hover .pstep__icon{background:var(--orange)}
+#gt-home .pstep__icon svg{width:23px;height:23px;fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#gt-home .pstep h3{color:#fff;font-size:18.5px;font-weight:700;letter-spacing:-.015em;margin-bottom:9px}
+#gt-home .pstep p{color:var(--muted-light);font-size:13.5px;line-height:1.68}
+.process__note{
+  position:relative;margin-top:44px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;
+  padding:26px 32px;border:1px solid var(--line-dark);background:rgba(255,255,255,.04);
+}
+#gt-home .process__note p{color:#dbe3f0;font-size:15px;max-width:760px}
+#gt-home .process__note p b{color:#fff}
+
+/* ============================================================
+   APPLICATIONS
+   ============================================================ */
+#gt-home .agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,2vw,28px)}
+#gt-home .acard{position:relative;display:block;overflow:hidden;background:var(--navy)}
+#gt-home .acard__img{position:relative;aspect-ratio:3/4;overflow:hidden}
+#gt-home .acard__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+#gt-home .acard:hover .acard__img img{transform:scale(1.07)}
+.acard__img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,27,51,.08) 0%,rgba(13,27,51,.05) 40%,rgba(13,27,51,.82) 100%);
+  transition:background .3s;
+}
+#gt-home .acard__num{position:absolute;z-index:2;top:18px;left:20px;color:#fff;font-size:11px;font-weight:800;letter-spacing:.16em;padding:6px 10px;background:rgba(13,27,51,.42);backdrop-filter:blur(4px)}
+#gt-home .acard__body{position:absolute;z-index:2;left:22px;right:22px;bottom:22px;color:#fff}
+#gt-home .acard__body h3{font-size:19px;font-weight:750;letter-spacing:-.02em;margin-bottom:7px}
+#gt-home .acard__body p{color:#c3cfe3;font-size:12.8px;line-height:1.6;max-height:0;opacity:0;overflow:hidden;transition:max-height .45s var(--ease),opacity .45s var(--ease)}
+#gt-home .acard:hover .acard__body p{max-height:120px;opacity:1}
+#gt-home .acard__line{width:34px;height:2px;background:var(--orange);margin-top:12px;transition:width .35s var(--ease)}
+#gt-home .acard:hover .acard__line{width:56px}
+
+/* ============================================================
+   WHY CHOOSE US
+   ============================================================ */
+#gt-home .why__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(48px,5vw,80px);align-items:start}
+#gt-home .why__media{position:relative}
+#gt-home .why__slider{position:relative;aspect-ratio:4/4.6;overflow:hidden;background:var(--bg-soft);box-shadow:var(--shadow-md)}
+#gt-home .why__slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .7s,visibility .7s}
+#gt-home .why__slide.is-active{opacity:1;visibility:visible}
+#gt-home .why__slide img{width:100%;height:100%;object-fit:cover}
+.why__slide figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:44px 24px 18px;
+  background:linear-gradient(180deg,transparent,rgba(13,27,51,.78));
+  color:#fff;font-size:13px;font-weight:600;letter-spacing:.03em;
+}
+#gt-home .why__dots{position:absolute;z-index:3;left:24px;bottom:18px;display:flex;gap:7px}
+#gt-home .why__dot{width:8px;height:8px;border-radius:99px;background:rgba(255,255,255,.5);transition:width .25s,background .25s}
+#gt-home .why__dot.is-active{width:24px;background:var(--orange)}
+.why__tag{
+  position:absolute;z-index:4;top:22px;left:22px;
+  padding:9px 14px;background:rgba(255,255,255,.95);color:var(--blue);
+  font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-sm);
+}
+#gt-home .why__tag i{width:7px;height:7px;border-radius:50%;background:var(--orange)}
+#gt-home .wfeatures{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:34px}
+.wfeat{
+  padding:22px 22px 20px;background:#fff;border:1px solid var(--line);
+  transition:box-shadow .3s,transform .3s,border-color .3s;position:relative;overflow:hidden;
+}
+#gt-home .wfeat::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue) 60%,var(--orange));transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+#gt-home .wfeat:hover{box-shadow:var(--shadow-md);transform:translateY(-4px);border-color:#d3dbe8}
+#gt-home .wfeat:hover::before{transform:scaleX(1)}
+#gt-home .wfeat__icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--bg-soft);color:var(--blue);margin-bottom:15px;transition:background .3s,color .3s}
+#gt-home .wfeat:hover .wfeat__icon{background:var(--orange);color:#fff}
+#gt-home .wfeat__icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#gt-home .wfeat h3{color:var(--blue);font-size:15.5px;font-weight:750;margin-bottom:6px;letter-spacing:-.01em}
+#gt-home .wfeat p{color:var(--muted);font-size:12.8px;line-height:1.6}
+#gt-home .wfeat--wide{grid-column:1/-1;display:flex;align-items:center;gap:20px;padding:18px 22px}
+#gt-home .wfeat--wide .wfeat__icon{margin-bottom:0;flex-shrink:0}
+#gt-home .wfeat--wide h3{margin-bottom:3px}
+
+/* ============================================================
+   CERTIFICATES
+   ============================================================ */
+#gt-home .cert__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(48px,5vw,80px);align-items:center}
+#gt-home .cert__list{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+#gt-home .cert__item{position:relative;display:block;border:1px solid var(--line);background:#fff;overflow:hidden;transition:box-shadow .3s,transform .3s}
+#gt-home .cert__item:hover{box-shadow:var(--shadow-md);transform:translateY(-5px)}
+#gt-home .cert__item img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;transition:transform .7s var(--ease)}
+#gt-home .cert__item:hover img{transform:scale(1.04)}
+.cert__item figcaption{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:16px 18px;border-top:1px solid var(--line);
+}
+#gt-home .cert__item figcaption b{color:var(--blue);font-size:14px;font-weight:750}
+#gt-home .cert__item figcaption small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+#gt-home .cert__item figcaption svg{width:17px;height:17px;flex-shrink:0;fill:none;stroke:var(--orange);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#gt-home .cert__checks{margin-top:28px;display:grid;gap:13px}
+#gt-home .cert__check{display:flex;gap:13px;align-items:flex-start}
+#gt-home .cert__check svg{width:21px;height:21px;flex-shrink:0;fill:none;stroke:var(--orange);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+#gt-home .cert__check b{color:var(--blue);font-size:14.5px;font-weight:700}
+#gt-home .cert__check span{display:block;color:var(--muted);font-size:13px;line-height:1.6}
+
+/* ============================================================
+   PROJECT SHOWCASE (marquee)
+   ============================================================ */
+#gt-home .showcase{overflow:hidden}
+#gt-home .marquee{display:flex;gap:18px;width:max-content;animation:marquee 46s linear infinite}
+#gt-home .marquee:hover{animation-play-state:paused}
+#gt-home .marquee__item{position:relative;width:300px;flex-shrink:0;overflow:hidden}
+#gt-home .marquee__item img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .7s var(--ease)}
+#gt-home .marquee__item:hover img{transform:scale(1.06)}
+#gt-home .marquee__item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(13,27,51,.55));opacity:0;transition:opacity .3s}
+#gt-home .marquee__item:hover::after{opacity:1}
+#gt-home .marquee--reverse{animation-direction:reverse;margin-top:18px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================
+   GLOBAL REACH
+   ============================================================ */
+#gt-home .global{position:relative;overflow:hidden}
+#gt-home .global__inner{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(48px,5vw,90px);align-items:center}
+.global__big{
+  font-size:clamp(72px,8vw,132px);font-weight:800;letter-spacing:-.05em;line-height:.95;
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.32);
+}
+#gt-home .global__big b{color:var(--orange);-webkit-text-stroke:0;display:inline-block}
+#gt-home .global__regions{display:flex;flex-wrap:wrap;gap:12px}
+.region{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 18px;
+  border:1px solid var(--line-dark);color:#dbe3f0;font-size:13px;font-weight:600;
+  transition:border-color .25s,background .25s,transform .25s;
+}
+#gt-home .region:hover{border-color:var(--orange);background:rgba(231,81,22,.12);transform:translateY(-2px)}
+#gt-home .region svg{width:15px;height:15px;fill:none;stroke:var(--orange);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============================================================
+   CTA BANNER
+   ============================================================ */
+#gt-home .cta{position:relative;overflow:hidden;background:linear-gradient(115deg,var(--blue) 0%,var(--blue-deep) 58%,#101f42 100%)}
+#gt-home .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(640px 300px at 85% 20%,rgba(231,81,22,.28),transparent 60%)}
+#gt-home .cta__inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:clamp(56px,5.5vw,84px) 0;flex-wrap:wrap}
+#gt-home .cta h2{color:#fff;font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.03em;line-height:1.15;max-width:640px}
+#gt-home .cta h2 span{color:var(--orange)}
+#gt-home .cta p{margin-top:14px;color:#c3cfe3;font-size:15px;max-width:560px}
+#gt-home .cta__btns{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+#gt-home .contact__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(480px,6fr);gap:clamp(52px,6vw,100px);align-items:center}
+#gt-home .cinfo{margin-top:36px;display:grid;gap:10px}
+#gt-home .cinfo__item{display:flex;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
+#gt-home .cinfo__item:last-child{border-bottom:0}
+#gt-home .cinfo__icon{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;background:var(--bg-soft);color:var(--blue);transition:background .25s,color .25s}
+#gt-home .cinfo__item:hover .cinfo__icon{background:var(--orange);color:#fff}
+#gt-home .cinfo__icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#gt-home .cinfo__item small{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+#gt-home .cinfo__item b{color:var(--blue);font-size:15px;font-weight:750}
+#gt-home .form-box{background:#fff;border:1px solid var(--line);padding:clamp(28px,3vw,46px);box-shadow:var(--shadow-md);position:relative}
+#gt-home .form-box::before{content:"";position:absolute;top:0;left:0;width:180px;height:3px;background:linear-gradient(90deg,var(--blue) 60%,var(--orange))}
+#gt-home .form-box h3{color:var(--blue);font-size:clamp(22px,2vw,28px);font-weight:750;letter-spacing:-.02em;margin-bottom:8px}
+#gt-home .form-box>p{color:var(--muted);font-size:13.5px;margin-bottom:26px}
+#gt-home .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+#gt-home .field{display:grid;gap:8px}
+#gt-home .field--full{grid-column:1/-1}
+#gt-home .field label{color:var(--blue);font-size:12px;font-weight:750;letter-spacing:.02em}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 14px;border:1px solid var(--line);background:var(--bg-soft);
+  font:inherit;font-size:13.5px;color:var(--text);outline:0;border-radius:0;
+  transition:border-color .2s,background .2s;
+}
+#gt-home .field textarea{min-height:110px;resize:vertical;line-height:1.6}
+#gt-home .field input:focus, #gt-home .field select:focus, #gt-home .field textarea:focus{border-color:var(--blue);background:#fff}
+#gt-home .field input::placeholder, #gt-home .field textarea::placeholder{color:#98a2b3}
+#gt-home .form-box .btn{margin-top:24px;width:100%}
+#gt-home .form-ok{display:none;margin-top:14px;padding:13px 16px;background:#eaf7ee;border:1px solid #b7e3c6;color:#1c7a3d;font-size:13.5px;font-weight:600}
+#gt-home .form-ok.is-show{display:block}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#gt-home .footer{background:var(--navy);color:#aeb9cf;position:relative;overflow:hidden}
+#gt-home .footer::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 300px at 110% -10%,rgba(32,67,145,.35),transparent 60%)}
+#gt-home .footer__main{position:relative;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:clamp(36px,4vw,64px);padding:clamp(56px,5vw,80px) 0 48px}
+#gt-home .footer__brand img{height:46px;width:auto;margin-bottom:18px}
+#gt-home .footer__brand p{font-size:13.5px;line-height:1.75;max-width:340px}
+#gt-home .footer__social{display:flex;gap:10px;margin-top:22px}
+.footer__social a{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--line-dark);color:#cdd6e6;transition:background .25s,border-color .25s,color .25s;
+}
+#gt-home .footer__social a:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+#gt-home .footer__social svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#gt-home .footer h4{color:#fff;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
+#gt-home .footer h4::after{content:"";display:block;width:26px;height:2px;background:var(--orange);margin-top:10px}
+#gt-home .footer__links li{margin-bottom:11px}
+#gt-home .footer__links a{font-size:13.5px;color:#aeb9cf;display:inline-flex;align-items:center;gap:8px;transition:color .2s,gap .2s}
+#gt-home .footer__links a::before{content:"";width:5px;height:5px;background:var(--orange);flex-shrink:0;transform:rotate(45deg)}
+#gt-home .footer__links a:hover{color:#fff;gap:12px}
+#gt-home .footer__contact li{display:flex;gap:12px;margin-bottom:14px;font-size:13.5px;line-height:1.6}
+#gt-home .footer__contact svg{width:17px;height:17px;flex-shrink:0;fill:none;stroke:var(--orange);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+#gt-home .footer__contact a:hover{color:#fff}
+#gt-home .footer__bottom{position:relative;border-top:1px solid var(--line-dark);padding:22px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px}
+#gt-home .footer__bottom a{color:#cdd6e6}
+#gt-home .footer__bottom a:hover{color:#fff}
+
+/* ============================================================
+   FLOATING
+   ============================================================ */
+.float-wa{
+  position:fixed;right:22px;bottom:22px;z-index:70;
+  width:56px;height:56px;border-radius:50%;background:#25d366;
+  display:grid;place-items:center;box-shadow:0 10px 28px rgba(37,211,102,.42);
+  transition:transform .25s;
+}
+#gt-home .float-wa:hover{transform:scale(1.08)}
+#gt-home .float-wa svg{width:29px;height:29px;fill:#fff}
+.float-wa::after{
+  content:"";position:absolute;inset:-5px;border-radius:50%;
+  border:2px solid rgba(37,211,102,.5);animation:waPulse 2.2s infinite;
+}
+@keyframes waPulse{0%{transform:scale(.9);opacity:1}70%{transform:scale(1.25);opacity:0}100%{opacity:0}}
+.to-top{
+  position:fixed;right:26px;bottom:92px;z-index:70;
+  width:44px;height:44px;background:#fff;border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--blue);box-shadow:var(--shadow-sm);
+  opacity:0;visibility:hidden;transform:translateY(8px);transition:all .3s;
+}
+#gt-home .to-top.is-show{opacity:1;visibility:visible;transform:none}
+#gt-home .to-top:hover{background:var(--blue);color:#fff}
+#gt-home .to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1180px){
+  #gt-home .nav{gap:24px}
+  #gt-home .pgrid{grid-template-columns:repeat(2,1fr)}
+  #gt-home .agrid{grid-template-columns:repeat(2,1fr)}
+  #gt-home .process__steps{grid-template-columns:repeat(2,1fr)}
+  #gt-home .hero__stats .container{grid-template-columns:repeat(3,1fr)}
+  #gt-home .hstat:nth-child(3){border-right:0}
+  #gt-home .hstat{padding:20px 18px 20px 0}
+  #gt-home .hstat + .hstat{padding-left:20px}
+}
+@media (max-width:992px){
+  #gt-home .nav, #gt-home .header__quote{display:none}
+  #gt-home .burger{display:flex}
+  #gt-home .about__grid, #gt-home .why__grid, #gt-home .cert__grid, #gt-home .global__inner, #gt-home .contact__grid{grid-template-columns:1fr}
+  #gt-home .about__slider{min-height:400px;aspect-ratio:4/3}
+  #gt-home .about__badge{top:-18px;right:6px;width:112px;height:112px}
+  #gt-home .about__badge b{font-size:24px}
+  #gt-home .why__slider{aspect-ratio:4/3.4;max-width:640px}
+  #gt-home .sec-head{flex-direction:column;align-items:flex-start;gap:22px}
+  #gt-home .footer__main{grid-template-columns:1fr 1fr}
+}
+@media (max-width:768px){
+  #gt-home .topbar__slogan{display:none}
+  #gt-home .topbar__inner{justify-content:center}
+  #gt-home .hero{min-height:auto}
+  #gt-home .hero__body{padding:72px 0 54px}
+  #gt-home .hero__nav{display:none}
+  #gt-home .hero__dots{bottom:auto;top:24px;left:24px}
+  #gt-home .hero__stats .container{grid-template-columns:repeat(2,1fr)}
+  #gt-home .hstat{border-right:0;padding:18px 0}
+  #gt-home .hstat + .hstat{padding-left:0;border-top:1px solid rgba(255,255,255,.12)}
+  #gt-home .hstat:nth-child(even){padding-left:18px;border-left:1px solid rgba(255,255,255,.12)}
+  #gt-home .pgrid{gap:36px 20px}
+  #gt-home .form-grid{grid-template-columns:1fr}
+  #gt-home .cta__inner{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:560px){
+  #gt-home .container{width:calc(100% - 36px)}
+  #gt-home .topbar__contacts a span{display:none}
+  #gt-home .pgrid, #gt-home .agrid, #gt-home .process__steps{grid-template-columns:1fr}
+  #gt-home .about__points{grid-template-columns:1fr}
+  #gt-home .wfeatures{grid-template-columns:1fr}
+  #gt-home .cert__list{grid-template-columns:1fr}
+  #gt-home .footer__main{grid-template-columns:1fr}
+  #gt-home .hero__cta .btn{width:100%}
+  #gt-home .marquee__item{width:230px}
+}
+@media (prefers-reduced-motion:reduce){
+  #gt-home, #gt-home *, #gt-home *::before, #gt-home *::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  #gt-home .reveal{opacity:1;transform:none}
+}
+</style>
+
+<div id="gt-home">
+
+<!-- ======================= TOP BAR ======================= -->
+<div class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__slogan">
+      <svg viewBox="0 0 24 24"><path d="M12 2v3M4.9 4.9l2.2 2.2M2 12h3M19 12h3M16.9 7.1l2.2-2.2M12 22a7 7 0 0 0 7-7H5a7 7 0 0 0 7 7Z"/></svg>
+      <span>Solar Outdoor Lighting Manufacturer &amp; Exporter Since 2013</span>
+    </div>
+    <div class="topbar__contacts">
+      <a href="mailto:sales@gtlighting.net">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+        <span>sales@gtlighting.net</span>
+      </a>
+      <a href="tel:+8613924989977">
+        <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1.1-.9 2-2 2C9.6 22 2 14.4 2 5c0-.6.4-1 1-1h2Z"/></svg>
+        <span>+86 139 2498 9977</span>
+      </a>
+      <div class="topbar__social">
+        <a href="https://www.facebook.com/share/1CZP21upEZ/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H6.5v3H9v9h3v-9h2.7l.8-3H12V6.8c0-.5.4-.8.9-.8H15V3Z"/></svg>
+        </a>
+        <a href="https://wa.me/8613924989977" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/><path d="M9 8.8c.3 2.6 3.6 5.9 6.2 6.2l1.3-1.3-2.3-1.2-1 .8c-.8-.4-1.7-1.3-2.1-2.1l.8-1L10.9 8 9.6 9.3Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= HEADER ======================= -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a class="brand" href="#top" aria-label="GT Lighting Home">
+      <img src="https://gtlighting.net/wp-content/uploads/2026/07/company-logo.jpg" alt="GT Lighting - Guangdong Guangtu Lighting Co., Ltd.">
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#top" class="is-active">Home</a>
+      <a href="#products">Products</a>
+      <a href="#factory">Factory</a>
+      <a href="#process">OEM/ODM</a>
+      <a href="#projects">Projects</a>
+      <a href="https://gtlighting.net/video/">Video</a>
+      <a href="https://gtlighting.net/about/">About</a>
+      <a href="https://gtlighting.net/contact-us/">Contact</a>
+    </nav>
+    <div class="header__cta">
+      <a href="#contact" class="btn btn--orange header__quote">
+        <span>Get A Quote</span>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m14 7 5 5-5 5"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile nav -->
+<div class="mnav" id="mnav">
+  <a href="#top">Home <small>01</small></a>
+  <a href="#products">Products <small>02</small></a>
+  <a href="#factory">Factory <small>03</small></a>
+  <a href="#process">OEM / ODM <small>04</small></a>
+  <a href="#projects">Projects <small>05</small></a>
+  <a href="https://gtlighting.net/about/">About <small>06</small></a>
+  <div class="mnav__cta">
+    <a href="#contact" class="btn btn--orange"><span>Get A Quote</span></a>
+    <a href="https://wa.me/8613924989977" target="_blank" rel="noopener" class="btn btn--ghost"><span>WhatsApp</span></a>
+  </div>
+</div>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero" id="hero">
+  <div class="hero__slides" id="heroSlides">
+    <div class="hero__slide is-active"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00121-HDR-scaled.jpg" alt="Solar garden lights illuminating a park pathway at night"></div>
+    <div class="hero__slide"><img src="https://gtlighting.net/wp-content/uploads/2026/03/21.jpg" alt="Solar street lights along a waterfront promenade"></div>
+    <div class="hero__slide"><img src="https://gtlighting.net/wp-content/uploads/2026/03/picture1-1.jpg" alt="GT Lighting solar lighting showroom"></div>
+    <div class="hero__slide"><img src="https://gtlighting.net/wp-content/uploads/2026/04/6392ae39f9be0e2bd7693dd1ef30e56e-scaled.jpg" alt="Solar landscape lighting product display"></div>
+  </div>
+  <div class="hero__overlay"></div>
+
+  <div class="container hero__body">
+    <div class="hero__content">
+      <span class="hero__tag"><i></i>GT Lighting · OEM / ODM Solar Lighting Factory</span>
+      <h1>
+        <span>Solar Outdoor Lighting</span>
+        <strong>Manufacturer &amp; Exporter</strong>
+      </h1>
+      <p class="hero__sub">
+        Guangdong Guangtu Lighting Co., Ltd. designs, engineers and manufactures
+        solar garden lights, landscape lights and customized outdoor lighting
+        solutions — serving importers, wholesalers and project contractors in
+        60+ countries since 2013.
+      </p>
+      <div class="hero__cta">
+        <a href="#contact" class="btn btn--orange">
+          <span>Get a Free Quote</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m14 7 5 5-5 5"/></svg>
+        </a>
+        <a href="#products" class="btn btn--ghost">
+          <span>Explore Products</span>
+        </a>
+      </div>
+      <div class="hero__chips">
+        <span class="hero__chip">
+          <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.7 2.9 8.3 7 10 4.1-1.7 7-5.3 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+          CE &amp; RoHS Certified
+        </span>
+        <span class="hero__chip">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+          60+ Export Countries
+        </span>
+        <span class="hero__chip">
+          <svg viewBox="0 0 24 24"><path d="M4 17v-2.5a2 2 0 0 1 .6-1.4l6.8-6.8a2 2 0 0 1 2.8 0l3.8 3.8a2 2 0 0 1 0 2.8l-6.8 6.8a2 2 0 0 1-1.4.6H8"/><path d="m13 5 6 6"/><path d="M4 20h7"/></svg>
+          OEM &amp; ODM Service
+        </span>
+        <span class="hero__chip">
+          <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+          Factory-Direct Supply
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__nav">
+    <button class="hero__arrow" id="heroPrev" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></svg>
+    </button>
+    <button class="hero__arrow" id="heroNext" aria-label="Next slide">
+      <svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>
+    </button>
+  </div>
+  <div class="hero__dots" id="heroDots"></div>
+
+  <div class="hero__stats">
+    <div class="container">
+      <div class="hstat"><b><span data-count="13">0</span><em>+</em></b><span>Years Since 2013</span></div>
+      <div class="hstat"><b><span data-count="50">0</span><em>+</em></b><span>Projects Completed</span></div>
+      <div class="hstat"><b><span data-count="100">0</span><em>+</em></b><span>Expert Team Members</span></div>
+      <div class="hstat"><b>$<span data-count="3.5" data-decimal="1">0</span><em>M</em></b><span>Annual Project Value</span></div>
+      <div class="hstat"><b><span data-count="60">0</span><em>+</em></b><span>Export Countries</span></div>
+    </div>
+  </div>
+</section>
+<!-- ======================= ABOUT / FACTORY ======================= -->
+<section class="section" id="factory">
+  <div class="container">
+    <div class="about__grid">
+      <div class="reveal">
+        <span class="eyebrow">About Us · Factory Strength</span>
+        <h2 class="sec-title">
+          <span>Illuminate a Green Future,</span>
+          <strong>Enjoy Outdoor Life</strong>
+        </h2>
+        <div class="sec-divider"></div>
+        <p class="sec-desc">
+          Founded on April 12, 2013, Guangdong Guangtu Lighting Co., Ltd. is a
+          high-tech enterprise specializing in the R&amp;D, production and sales of
+          solar-powered outdoor lighting products.
+        </p>
+        <p class="sec-desc" style="margin-top:14px">
+          Closely following the development of green energy, we focus on solar
+          landscape lighting innovation — delivering eco-friendly, energy-saving
+          and customized outdoor lighting solutions for global customers, from
+          standard collections to fully customized project orders.
+        </p>
+
+        <div class="about__points">
+          <div class="apoint">
+            <svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M8.5 14.5A6 6 0 1 1 15.5 14.5c-1 .7-1.5 1.5-1.5 2.5h-4c0-1-.5-1.8-1.5-2.5Z"/></svg>
+            <div><b>In-House R&amp;D &amp; Design</b><span>Independent product development for solar landscape lighting.</span></div>
+          </div>
+          <div class="apoint">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+            <div><b>Modern Production Workshop</b><span>Organized assembly lines for stable quality and lead time.</span></div>
+          </div>
+          <div class="apoint">
+            <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.7 2.9 8.3 7 10 4.1-1.7 7-5.3 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+            <div><b>Strict Quality Control</b><span>Inspection from incoming materials to aging tests before packing.</span></div>
+          </div>
+          <div class="apoint">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+            <div><b>OEM / ODM Customization</b><span>Custom designs, branding and specifications for project needs.</span></div>
+          </div>
+        </div>
+
+        <div class="about__cta">
+          <a href="https://gtlighting.net/about/" class="link-more">
+            <span>Discover Our Factory</span>
+            <svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="about__media reveal" data-delay="1">
+        <div class="about__slider" id="aboutSlider">
+          <div class="about__slide is-active">
+            <img src="https://gtlighting.net/wp-content/uploads/2026/07/90c4745d97e5f902d4dd2f8a74c229a9.jpg" alt="GT Lighting modern production workshop">
+            <div class="about__caption">
+              <div><small>01 / Production</small><b>Modern Production Workshop</b></div>
+            </div>
+          </div>
+          <div class="about__slide">
+            <img src="https://gtlighting.net/wp-content/uploads/2026/07/e67cefeb97777083b617358e5605f772-scaled.jpg" alt="GT Lighting showroom of solar outdoor lights">
+            <div class="about__caption">
+              <div><small>02 / Showroom</small><b>Solar Lighting Showroom</b></div>
+            </div>
+          </div>
+          <div class="about__slide">
+            <img src="https://gtlighting.net/wp-content/uploads/2026/06/DSC00088-scaled.jpg" alt="Solar outdoor lighting project by GT Lighting">
+            <div class="about__caption">
+              <div><small>03 / Solutions</small><b>Solar Outdoor Lighting Solutions</b></div>
+            </div>
+          </div>
+          <div class="about__dots" id="aboutDots"></div>
+        </div>
+        <div class="about__badge">
+          <b><span data-count="13">0</span><em>+</em></b>
+          <span>Years of Manufacturing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PRODUCTS ======================= -->
+<section class="section section--soft" id="products">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Our Products</span>
+        <h2 class="sec-title">
+          <span>Explore Our Solar</span>
+          <strong>Lighting Products</strong>
+        </h2>
+      </div>
+      <div style="max-width:440px">
+        <p class="sec-desc">
+          Reliable solar lighting solutions for gardens, landscapes, buildings,
+          public spaces and roadway illumination — ready for OEM/ODM orders.
+        </p>
+        <div style="margin-top:20px">
+          <a href="https://gtlighting.net/products" class="link-more">
+            <span>View All Products</span>
+            <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m14 7 5 5-5 5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pgrid">
+      <article class="pcard reveal">
+        <a href="https://gtlighting.net/products/garden-light" class="pcard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00187-HDR-scaled.jpg" alt="Solar garden light illuminating an outdoor garden">
+          <span class="pcard__num">01</span>
+          <span class="pcard__arrow"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <span class="pcard__cat">Landscape Lighting</span>
+          <h3>The Garden Light</h3>
+          <p>Elegant solar lighting designed for gardens, pathways, parks and outdoor landscape environments.</p>
+          <div class="pcard__specs"><span>Solar Powered</span><span>IP65 Outdoor</span><span>OEM / ODM</span></div>
+        </div>
+      </article>
+
+      <article class="pcard reveal" data-delay="1">
+        <a href="https://gtlighting.net/products/lawn-light" class="pcard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/07/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260718141839_53_56.png" alt="Solar lawn lights illuminating a villa lawn">
+          <span class="pcard__num">02</span>
+          <span class="pcard__arrow"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <span class="pcard__cat">Garden Lighting</span>
+          <h3>The Lawn Light</h3>
+          <p>Soft and comfortable lawn illumination for villas, courtyards, pathways and residential landscapes.</p>
+          <div class="pcard__specs"><span>Solar Powered</span><span>Warm / CCT Options</span><span>OEM / ODM</span></div>
+        </div>
+      </article>
+
+      <article class="pcard reveal" data-delay="2">
+        <a href="https://gtlighting.net/products/pillar-light" class="pcard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/07/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260718140837_52_56.png" alt="Solar pillar lights installed on entrance pillars">
+          <span class="pcard__num">03</span>
+          <span class="pcard__arrow"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <span class="pcard__cat">Architectural Lighting</span>
+          <h3>The Pillar Light</h3>
+          <p>Decorative solar lighting for entrance pillars, fences, terraces and architectural boundary walls.</p>
+          <div class="pcard__specs"><span>Solar Powered</span><span>Decorative Design</span><span>OEM / ODM</span></div>
+        </div>
+      </article>
+
+      <article class="pcard reveal">
+        <a href="https://gtlighting.net/products/high-pole-light" class="pcard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/05/0b2dd3f3489c5094f3fd3771c2578753.jpg" alt="Solar high pole lights for public areas">
+          <span class="pcard__num">04</span>
+          <span class="pcard__arrow"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <span class="pcard__cat">Public Area Lighting</span>
+          <h3>The High Pole Light</h3>
+          <p>High-output solar lighting for squares, public areas, commercial landscapes and large outdoor spaces.</p>
+          <div class="pcard__specs"><span>High Output</span><span>Large Areas</span><span>OEM / ODM</span></div>
+        </div>
+      </article>
+
+      <article class="pcard reveal" data-delay="1">
+        <a href="https://gtlighting.net/products/wall-washer-light" class="pcard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/05/0012-3-scaled.jpg" alt="Solar wall washer light on building facade">
+          <span class="pcard__num">05</span>
+          <span class="pcard__arrow"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <span class="pcard__cat">Facade Lighting</span>
+          <h3>The Wall Washer Light</h3>
+          <p>Uniform solar illumination for exterior walls, architectural façades and landscape feature surfaces.</p>
+          <div class="pcard__specs"><span>Uniform Beam</span><span>Facade Use</span><span>OEM / ODM</span></div>
+        </div>
+      </article>
+
+      <article class="pcard reveal" data-delay="2">
+        <a href="https://gtlighting.net/products/street-light" class="pcard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/05/e81010ee83af5027f61cde3c40ed028c.jpg" alt="Solar street lights illuminating a residential road">
+          <span class="pcard__num">06</span>
+          <span class="pcard__arrow"><svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <span class="pcard__cat">Roadway Lighting</span>
+          <h3>The Street Light</h3>
+          <p>Reliable solar roadway lighting for residential streets, communities, public roads and industrial areas.</p>
+          <div class="pcard__specs"><span>Roadway Grade</span><span>Dusk to Dawn</span><span>OEM / ODM</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= OEM / ODM PROCESS ======================= -->
+<section class="section section--dark process" id="process">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">OEM / ODM Service</span>
+        <h2 class="sec-title">
+          <span>From Inquiry to Delivery,</span>
+          <strong>A Clear Working Process</strong>
+        </h2>
+      </div>
+      <p class="sec-desc" style="max-width:420px">
+        A transparent, well-managed workflow that overseas buyers can rely on —
+        every order is followed up by a dedicated export sales team.
+      </p>
+    </div>
+
+    <div class="process__steps reveal" data-delay="1">
+      <div class="pstep">
+        <div class="pstep__num">STEP 01</div>
+        <div class="pstep__icon"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></div>
+        <h3>Inquiry &amp; Requirements</h3>
+        <p>Share your market, application and specification needs. We respond within 24 hours on working days.</p>
+      </div>
+      <div class="pstep">
+        <div class="pstep__num">STEP 02</div>
+        <div class="pstep__icon"><svg viewBox="0 0 24 24"><path d="M4 17v-2.5a2 2 0 0 1 .6-1.4l6.8-6.8a2 2 0 0 1 2.8 0l3.8 3.8a2 2 0 0 1 0 2.8l-6.8 6.8a2 2 0 0 1-1.4.6H8"/><path d="m13 5 6 6"/></svg></div>
+        <h3>Design &amp; Quotation</h3>
+        <p>Product recommendation or custom design with detailed quotation, specifications and packaging options.</p>
+      </div>
+      <div class="pstep">
+        <div class="pstep__num">STEP 03</div>
+        <div class="pstep__icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Sample Confirmation</h3>
+        <p>Samples or mock-ups for your evaluation — confirm every detail before mass production starts.</p>
+      </div>
+      <div class="pstep">
+        <div class="pstep__num">STEP 04</div>
+        <div class="pstep__icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+        <h3>Mass Production</h3>
+        <p>Organized production lines with scheduled updates on order progress and key milestones.</p>
+      </div>
+      <div class="pstep">
+        <div class="pstep__num">STEP 05</div>
+        <div class="pstep__icon"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.7 2.9 8.3 7 10 4.1-1.7 7-5.3 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Quality Inspection</h3>
+        <p>Full inspection including function, charging and aging tests before goods are packed for export.</p>
+      </div>
+      <div class="pstep">
+        <div class="pstep__num">STEP 06</div>
+        <div class="pstep__icon"><svg viewBox="0 0 24 24"><path d="M3 17h13V7H3zM16 10h3l2 3v4h-5"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg></div>
+        <h3>Global Delivery</h3>
+        <p>Export-standard packaging with flexible shipping support to 60+ countries and regions.</p>
+      </div>
+    </div>
+
+    <div class="process__note reveal" data-delay="2">
+      <p><b>Looking for a long-term solar lighting supplier?</b> Send us your project or product requirements — our team will prepare a tailored proposal and quotation for you.</p>
+      <a href="#contact" class="btn btn--orange">
+        <span>Start an Inquiry</span>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m14 7 5 5-5 5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- ======================= APPLICATIONS ======================= -->
+<section class="section" id="applications">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Applications</span>
+        <h2 class="sec-title">
+          <span>Lighting Solutions for</span>
+          <strong>Every Outdoor Space</strong>
+        </h2>
+      </div>
+      <p class="sec-desc" style="max-width:420px">
+        From private residences to public landscapes, our solar lighting
+        solutions combine functional illumination with refined outdoor aesthetics.
+      </p>
+    </div>
+
+    <div class="agrid">
+      <a href="https://gtlighting.net/project/" class="acard reveal">
+        <div class="acard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/05/%E5%9C%BA%E6%99%AF%E5%9B%BE-4.jpg" alt="Warm lighting in a private courtyard">
+          <span class="acard__num">01</span>
+        </div>
+        <div class="acard__body">
+          <h3>Private Courtyards</h3>
+          <p>Create a warm and comfortable outdoor atmosphere to elevate the quality of daily life.</p>
+          <div class="acard__line"></div>
+        </div>
+      </a>
+      <a href="https://gtlighting.net/project/" class="acard reveal" data-delay="1">
+        <div class="acard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/05/6-2.jpg" alt="Elegant villa garden illuminated at dusk">
+          <span class="acard__num">02</span>
+        </div>
+        <div class="acard__body">
+          <h3>Villa Gardens</h3>
+          <p>Reflect the owner’s unique taste with exclusive custom landscape lighting.</p>
+          <div class="acard__line"></div>
+        </div>
+      </a>
+      <a href="https://gtlighting.net/project/" class="acard reveal" data-delay="2">
+        <div class="acard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/05/3965086a70ae5760a2231b5e73240af8.png" alt="Outdoor lighting at a boutique hotel">
+          <span class="acard__num">03</span>
+        </div>
+        <div class="acard__body">
+          <h3>Hotels &amp; Homestays</h3>
+          <p>Elevate the environmental aesthetics and offer guests a pleasant accommodation experience.</p>
+          <div class="acard__line"></div>
+        </div>
+      </a>
+      <a href="https://gtlighting.net/project/" class="acard reveal" data-delay="3">
+        <div class="acard__img">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00063-scaled.jpg" alt="Illuminated pathway in a public park">
+          <span class="acard__num">04</span>
+        </div>
+        <div class="acard__body">
+          <h3>Parks &amp; Scenic Spots</h3>
+          <p>Beautify public surroundings and create a safe, pleasant nighttime atmosphere.</p>
+          <div class="acard__line"></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= WHY CHOOSE US ======================= -->
+<section class="section section--soft" id="why">
+  <div class="container">
+    <div class="why__grid">
+      <div class="why__media reveal">
+        <div class="why__slider" id="whySlider">
+          <figure class="why__slide is-active">
+            <img src="https://gtlighting.net/wp-content/uploads/2026/07/e9aeee2d8f2b493c21f9dc27b154a1c6-scaled.jpg" alt="Overseas customer inspecting GT Lighting products">
+            <figcaption>Customer Visit · Product Inspection</figcaption>
+          </figure>
+          <figure class="why__slide">
+            <img src="https://gtlighting.net/wp-content/uploads/2026/07/1f6ba289db445c49532dbb4596a7a9b6-scaled.jpg" alt="Global buyers visiting GT Lighting showroom">
+            <figcaption>Showroom · Global Buyer Visits</figcaption>
+          </figure>
+          <figure class="why__slide">
+            <img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00095-scaled.jpg" alt="Solar garden light product detail">
+            <figcaption>Product Detail · Craftsmanship</figcaption>
+          </figure>
+          <div class="why__dots" id="whyDots"></div>
+        </div>
+        <div class="why__tag"><i></i>Trusted by Global Buyers</div>
+      </div>
+
+      <div class="reveal" data-delay="1">
+        <span class="eyebrow">Our Advantages</span>
+        <h2 class="sec-title">
+          <span>Why Global Buyers</span>
+          <strong>Choose Us</strong>
+        </h2>
+        <div class="sec-divider"></div>
+        <p class="sec-desc">
+          From clean solar energy and intelligent control to private customization
+          and reliable service, we provide professional outdoor lighting solutions
+          built around quality, efficiency and long-term value.
+        </p>
+
+        <div class="wfeatures">
+          <div class="wfeat">
+            <div class="wfeat__icon"><svg viewBox="0 0 24 24"><path d="M20 4c-7 0-12 3.5-14 10"/><path d="M20 4c0 8-4 13-10 13"/><path d="M6 20c1.5-5 5-9 10-12"/></svg></div>
+            <h3>Eco-Friendly &amp; Efficient</h3>
+            <p>Clean solar energy with zero emissions and low operating cost.</p>
+          </div>
+          <div class="wfeat">
+            <div class="wfeat__icon"><svg viewBox="0 0 24 24"><path d="M4 17v-2.5a2 2 0 0 1 .6-1.4l6.8-6.8a2 2 0 0 1 2.8 0l3.8 3.8a2 2 0 0 1 0 2.8l-6.8 6.8a2 2 0 0 1-1.4.6H8"/><path d="m13 5 6 6"/><path d="M4 20h7"/></svg></div>
+            <h3>Private Customization</h3>
+            <p>Custom designs, finishes and branding for different project needs.</p>
+          </div>
+          <div class="wfeat">
+            <div class="wfeat__icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M8.5 14.5A6 6 0 1 1 15.5 14.5c-1 .7-1.5 1.5-1.5 2.5h-4c0-1-.5-1.8-1.5-2.5Z"/><path d="M12 2V1M4.9 4.9l-.7-.7M19.1 4.9l.7-.7"/></svg></div>
+            <h3>Intelligent Control</h3>
+            <p>Smart light control and sensing for automatic daily operation.</p>
+          </div>
+          <div class="wfeat">
+            <div class="wfeat__icon"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.7 2.9 8.3 7 10 4.1-1.7 7-5.3 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <h3>Superior &amp; Durable</h3>
+            <p>Reliable materials and construction for long-term outdoor use.</p>
+          </div>
+          <div class="wfeat wfeat--wide">
+            <div class="wfeat__icon"><svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v4a2 2 0 0 0 2 2h2v-7H4Z"/><path d="M20 13v4a2 2 0 0 1-2 2h-2v-7h4Z"/><path d="M16 19c0 1.1-.9 2-2 2h-2"/></svg></div>
+            <div>
+              <h3>End-to-End Service</h3>
+              <p>Full support from solution design and sampling to production, shipping and after-sales.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CERTIFICATES ======================= -->
+<section class="section" id="certificates">
+  <div class="container">
+    <div class="cert__grid">
+      <div class="reveal">
+        <span class="eyebrow">Certified Quality</span>
+        <h2 class="sec-title">
+          <span>Tested &amp; Certified</span>
+          <strong>For Global Markets</strong>
+        </h2>
+        <div class="sec-divider"></div>
+        <p class="sec-desc">
+          Our products are tested by third-party laboratories and shipped with
+          the documentation your market requires — making import and project
+          approval smoother.
+        </p>
+        <div class="cert__checks">
+          <div class="cert__check">
+            <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><b>CE Certified — European Conformity</b><span>Test verification of conformity for EU market access.</span></div>
+          </div>
+          <div class="cert__check">
+            <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><b>RoHS Certified — Environmental Compliance</b><span>Restriction of hazardous substances for eco-friendly products.</span></div>
+          </div>
+          <div class="cert__check">
+            <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+            <div><b>Third-Party Lab Tested</b><span>Certificates issued by accredited testing laboratories (BCTC).</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert__list reveal" data-delay="1">
+        <a class="cert__item" href="https://gtlighting.net/wp-content/uploads/2026/07/GT-CPD4003-CE-EMC-CERT1_1.jpg" target="_blank" rel="noopener">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/07/GT-CPD4003-CE-EMC-CERT1_1.jpg" alt="CE certificate of GT Lighting solar lights">
+          <figcaption>
+            <div><b>CE Certified</b><small>European Conformity · View Certificate</small></div>
+            <svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </figcaption>
+        </a>
+        <a class="cert__item" href="https://gtlighting.net/wp-content/uploads/2026/07/GT-CPD4003-RoHS-%E8%AF%81%E4%B9%A61_1.jpg" target="_blank" rel="noopener">
+          <img src="https://gtlighting.net/wp-content/uploads/2026/07/GT-CPD4003-RoHS-%E8%AF%81%E4%B9%A61_1.jpg" alt="RoHS certificate of GT Lighting solar lights">
+          <figcaption>
+            <div><b>RoHS Certified</b><small>Environmental Compliance · View Certificate</small></div>
+            <svg viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </figcaption>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PROJECT SHOWCASE ======================= -->
+<section class="section section--soft showcase" id="projects">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Project Showcase</span>
+        <h2 class="sec-title">
+          <span>Real Projects,</span>
+          <strong>Proven Performance</strong>
+        </h2>
+      </div>
+      <div style="max-width:420px">
+        <p class="sec-desc">
+          A selection of installed solar lighting projects — from residential
+          communities to public landscapes.
+        </p>
+        <div style="margin-top:20px">
+          <a href="https://gtlighting.net/project/" class="link-more">
+            <span>View All Projects</span>
+            <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m14 7 5 5-5 5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal" data-delay="1">
+    <div class="marquee" id="marquee1">
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00108-scaled.jpg" alt="Solar pole lights in a park project"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00045-scaled.jpg" alt="Solar garden lights at a landscaped entrance"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00063-scaled.jpg" alt="Solar lawn lights along a pathway"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00244-HDR-scaled.jpg" alt="Solar garden light at night"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00080-scaled.jpg" alt="Dual-head solar garden light close-up"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00057-scaled.jpg" alt="Solar lawn light beside a road"></div>
+    </div>
+    <div class="marquee marquee--reverse" id="marquee2">
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00253-HDR-scaled.jpg" alt="Solar street lights at night"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00099-scaled.jpg" alt="Solar pole light in a green park"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00036-scaled.jpg" alt="Solar garden light close-up"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00075-scaled.jpg" alt="Solar pole light in a residential community"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/06/DSC00088-scaled.jpg" alt="Solar lights along a park road"></div>
+      <div class="marquee__item"><img src="https://gtlighting.net/wp-content/uploads/2026/05/DSC00121-HDR-scaled.jpg" alt="Solar lawn lights at night in a park"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= GLOBAL REACH ======================= -->
+<section class="section section--dark global" id="global">
+  <div class="container">
+    <div class="global__inner">
+      <div class="reveal">
+        <span class="eyebrow">Global Reach</span>
+        <div class="global__big" style="margin-top:18px"><b><span data-count="60">0</span>+</b><br>Countries</div>
+        <p class="sec-desc" style="margin-top:22px;max-width:440px">
+          Our solar lighting products are exported to more than 60 countries and
+          regions, supporting distributors, brands, contractors and project
+          owners worldwide.
+        </p>
+      </div>
+      <div class="reveal" data-delay="1">
+        <div class="global__regions">
+          <span class="region"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>Europe</span>
+          <span class="region"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>North America</span>
+          <span class="region"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>South America</span>
+          <span class="region"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>Middle East</span>
+          <span class="region"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>Southeast Asia</span>
+          <span class="region"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>Africa</span>
+          <span class="region"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>Oceania</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CTA BANNER ======================= -->
+<section class="cta">
+  <div class="container cta__inner">
+    <div class="reveal">
+      <h2>Start Your Solar Lighting Project <span>With a Reliable Factory</span></h2>
+      <p>Tell us your requirements — get a professional proposal, quotation and samples from our export team.</p>
+    </div>
+    <div class="cta__btns reveal" data-delay="1">
+      <a href="#contact" class="btn btn--orange">
+        <span>Get a Free Quote</span>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m14 7 5 5-5 5"/></svg>
+      </a>
+      <a href="https://wa.me/8613924989977" target="_blank" rel="noopener" class="btn btn--white">
+        <span>Chat on WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- ======================= CONTACT ======================= -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact__grid">
+      <div class="reveal">
+        <span class="eyebrow">Get in Touch</span>
+        <h2 class="sec-title">
+          <span>Let’s Talk About</span>
+          <strong>Your Project</strong>
+        </h2>
+        <div class="sec-divider"></div>
+        <p class="sec-desc">
+          Tell us about your outdoor lighting project or sourcing plan. Our
+          export team will recommend suitable products and prepare a
+          professional solution and quotation for you.
+        </p>
+        <div class="cinfo">
+          <a class="cinfo__item" href="mailto:sales@gtlighting.net">
+            <span class="cinfo__icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
+            <div><small>Email</small><b>sales@gtlighting.net</b></div>
+          </a>
+          <a class="cinfo__item" href="tel:+8613924989977">
+            <span class="cinfo__icon"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1.1-.9 2-2 2C9.6 22 2 14.4 2 5c0-.6.4-1 1-1h2Z"/></svg></span>
+            <div><small>Phone / WhatsApp</small><b>+86 139 2498 9977</b></div>
+          </a>
+          <div class="cinfo__item">
+            <span class="cinfo__icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+            <div><small>Factory</small><b>Guangdong, China</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-box reveal" data-delay="1">
+        <h3>Send an Inquiry</h3>
+        <p>We usually reply within 24 hours on working days.</p>
+        <form id="inquiryForm" action="https://gtlighting.net/contact-us/" method="get">
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-name">Name *</label>
+              <input id="f-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-email">Email *</label>
+              <input id="f-email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="f-country">Country / Region</label>
+              <input id="f-country" name="country" type="text" placeholder="e.g. Germany" autocomplete="country-name">
+            </div>
+            <div class="field">
+              <label for="f-product">Interested Product</label>
+              <select id="f-product" name="product">
+                <option value="">Select a product line</option>
+                <option>The Garden Light</option>
+                <option>The Lawn Light</option>
+                <option>The Pillar Light</option>
+                <option>The High Pole Light</option>
+                <option>The Wall Washer Light</option>
+                <option>The Street Light</option>
+                <option>Custom / OEM Project</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="f-msg">Message *</label>
+              <textarea id="f-msg" name="message" placeholder="Tell us about your product or project requirements — quantity, specifications, destination port…" required></textarea>
+            </div>
+          </div>
+          <button class="btn btn--orange" type="submit">
+            <span>Send Inquiry</span>
+            <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m14 7 5 5-5 5"/></svg>
+          </button>
+          <div class="form-ok" id="formOk">Thank you! Your inquiry has been noted. Our team will contact you shortly — you can also reach us instantly on WhatsApp.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__main">
+      <div class="footer__brand">
+        <span class="logo-light"><img src="https://gtlighting.net/wp-content/uploads/2026/07/company-logo.jpg" alt="GT Lighting logo"></span>
+        <p>
+          Guangdong Guangtu Lighting Co., Ltd. — a high-tech enterprise
+          specializing in R&amp;D, production and export of solar-powered outdoor
+          lighting since 2013.
+        </p>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/share/1CZP21upEZ/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H6.5v3H9v9h3v-9h2.7l.8-3H12V6.8c0-.5.4-.8.9-.8H15V3Z"/></svg>
+          </a>
+          <a href="https://wa.me/8613924989977" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/><path d="M9 8.8c.3 2.6 3.6 5.9 6.2 6.2l1.3-1.3-2.3-1.2-1 .8c-.8-.4-1.7-1.3-2.1-2.1l.8-1L10.9 8 9.6 9.3Z"/></svg>
+          </a>
+          <a href="mailto:sales@gtlighting.net" aria-label="Email">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Products</h4>
+        <ul class="footer__links">
+          <li><a href="https://gtlighting.net/products/garden-light">The Garden Light</a></li>
+          <li><a href="https://gtlighting.net/products/lawn-light">The Lawn Light</a></li>
+          <li><a href="https://gtlighting.net/products/pillar-light">The Pillar Light</a></li>
+          <li><a href="https://gtlighting.net/products/high-pole-light">The High Pole Light</a></li>
+          <li><a href="https://gtlighting.net/products/wall-washer-light">The Wall Washer Light</a></li>
+          <li><a href="https://gtlighting.net/products/street-light">The Street Light</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="#top">Home</a></li>
+          <li><a href="https://gtlighting.net/project/">Projects</a></li>
+          <li><a href="https://gtlighting.net/video/">Video</a></li>
+          <li><a href="https://gtlighting.net/about/">About Us</a></li>
+          <li><a href="https://gtlighting.net/contact-us/">Contact Us</a></li>
+          <li><a href="#contact">Get A Quote</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact Info</h4>
+        <ul class="footer__contact">
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <span>Guangdong Guangtu Lighting Co., Ltd.<br>Guangdong, China</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2c1.5 3 3 4.5 6 6l2-3 5 2v4c0 1.1-.9 2-2 2C9.6 22 2 14.4 2 5c0-.6.4-1 1-1h2Z"/></svg>
+            <a href="tel:+8613924989977">+86 139 2498 9977</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+            <a href="mailto:sales@gtlighting.net">sales@gtlighting.net</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <span>Mon – Sat · 8:30 – 18:30 (GMT+8)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Guangdong Guangtu Lighting Co., Ltd. All Rights Reserved.</span>
+      <span>CE &amp; RoHS Certified · Solar Outdoor Lighting Manufacturer</span>
+    </div>
+  </div>
+</footer>
+
+<!-- floating -->
+<a class="float-wa" href="https://wa.me/8613924989977" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.8 5 2.3 7L4.5 27l5.3-1.7c1.9 1 4 1.6 6.2 1.6 6.6 0 12-5.3 12-11.9S22.6 3 16 3Zm6.4 16.9c-.3.8-1.6 1.5-2.2 1.6-.6.1-1.3.1-2.1-.1-.5-.2-1.1-.4-1.9-.7-3.3-1.4-5.5-4.8-5.6-5-.2-.2-1.4-1.8-1.4-3.5s.9-2.5 1.2-2.8c.3-.3.7-.4.9-.4h.7c.2 0 .5-.1.7.5.3.6.9 2.1.9 2.2.1.1.1.3 0 .5-.1.2-.1.3-.3.5l-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1.3.1 1.8.8 2.1 1 .3.2.5.2.6.4 0 .1 0 .7-.3 1.3Z"/></svg>
+</a>
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- header scroll ---------- */
+  var header = document.getElementById("header");
+  var toTop = document.getElementById("toTop");
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    header.classList.toggle("is-scrolled", y > 10);
+    toTop.classList.toggle("is-show", y > 600);
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+  toTop.addEventListener("click", function(){ window.scrollTo({top:0, behavior: reduceMotion ? "auto" : "smooth"}); });
+
+  /* ---------- mobile nav ---------- */
+  var burger = document.getElementById("burger");
+  var mnav = document.getElementById("mnav");
+  burger.addEventListener("click", function(){
+    var open = mnav.classList.toggle("is-open");
+    burger.classList.toggle("is-open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+  mnav.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      mnav.classList.remove("is-open");
+      burger.classList.remove("is-open");
+      burger.setAttribute("aria-expanded","false");
+      document.body.style.overflow = "";
+    });
+  });
+
+  /* ---------- generic slider ---------- */
+  function makeSlider(slidesSel, dotsWrap, interval){
+    var slides = Array.prototype.slice.call(document.querySelectorAll(slidesSel));
+    var dotsEl = document.getElementById(dotsWrap);
+    if(!slides.length || !dotsEl) return null;
+    var i = 0, timer = null, dots = [];
+    slides.forEach(function(_, n){
+      var d = document.createElement("button");
+      d.className = dotsEl.id === "heroDots" ? "hero__dot" : (dotsEl.id === "aboutDots" ? "about__dot" : "why__dot");
+      d.setAttribute("aria-label", "Go to slide " + (n+1));
+      if(dotsEl.id === "heroDots"){ var bar = document.createElement("i"); d.appendChild(bar); }
+      d.addEventListener("click", function(){ go(n); restart(); });
+      dotsEl.appendChild(d); dots.push(d);
+    });
+    function go(n){
+      i = (n + slides.length) % slides.length;
+      slides.forEach(function(s,k){ s.classList.toggle("is-active", k === i); });
+      dots.forEach(function(d,k){ d.classList.toggle("is-active", k === i); });
+    }
+    function restart(){
+      if(timer){ clearInterval(timer); timer = null; }
+      if(!reduceMotion && slides.length > 1){ timer = setInterval(function(){ go(i+1); }, interval || 5600); }
+    }
+    go(0); restart();
+    return { next:function(){ go(i+1); restart(); }, prev:function(){ go(i-1); restart(); } };
+  }
+
+  var hero = makeSlider(".hero__slide", "heroDots", 5600);
+  if(hero){
+    document.getElementById("heroNext").addEventListener("click", hero.next);
+    document.getElementById("heroPrev").addEventListener("click", hero.prev);
+  }
+  makeSlider(".about__slide", "aboutDots", 5200);
+  makeSlider(".why__slide", "whyDots", 5200);
+
+  /* ---------- reveal on scroll ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, {threshold:.12, rootMargin:"0px 0px -40px 0px"});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }else{
+    revealEls.forEach(function(el){ el.classList.add("in"); });
+  }
+
+  /* ---------- count up ---------- */
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute("data-count"));
+    var decimals = parseInt(el.getAttribute("data-decimal") || "0", 10);
+    var dur = 1600, start = null;
+    function frame(t){
+      if(!start) start = t;
+      var p = Math.min((t - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(decimals);
+      if(p < 1) requestAnimationFrame(frame);
+    }
+    if(reduceMotion){ el.textContent = target.toFixed(decimals); return; }
+    requestAnimationFrame(frame);
+  }
+  var counters = document.querySelectorAll("[data-count]");
+  if("IntersectionObserver" in window){
+    var co = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ animateCount(e.target); co.unobserve(e.target); }
+      });
+    }, {threshold:.5});
+    counters.forEach(function(el){ co.observe(el); });
+  }else{
+    counters.forEach(animateCount);
+  }
+
+  /* ---------- marquee: duplicate content for seamless loop ---------- */
+  ["marquee1","marquee2"].forEach(function(id){
+    var m = document.getElementById(id);
+    if(m){ m.innerHTML += m.innerHTML; }
+  });
+
+  /* ---------- form ---------- */
+  var form = document.getElementById("inquiryForm");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    document.getElementById("formOk").classList.add("is-show");
+    form.reset();
+  });
+
+  /* ---------- year ---------- */
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Guangdong Guangtu Lighting Co., Ltd.",
+  "alternateName": "GT Lighting",
+  "url": "https://gtlighting.net/",
+  "logo": "https://gtlighting.net/wp-content/uploads/2026/07/company-logo.jpg",
+  "description": "Solar outdoor lighting manufacturer since 2013 — R&D, production and export of solar garden lights, landscape lights and customized outdoor lighting solutions to 60+ countries.",
+  "foundingDate": "2013-04-12",
+  "address": { "@type": "PostalAddress", "addressRegion": "Guangdong", "addressCountry": "CN" },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+86-139-2498-9977",
+    "email": "sales@gtlighting.net",
+    "contactType": "sales",
+    "availableLanguage": ["en", "zh"]
+  }
+}
+</script>
